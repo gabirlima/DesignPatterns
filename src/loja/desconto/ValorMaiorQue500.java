@@ -10,10 +10,12 @@ public class ValorMaiorQue500 extends Desconto{
         super(proximo);
     }
 
-    public BigDecimal calcula(Orcamento orcamento){
-        if(orcamento.getValor().compareTo(new BigDecimal("500")) > 0){
-            return orcamento.getValor().multiply(new BigDecimal("0.05"));
-        }
-        return proximo.calcula(orcamento);
+    public BigDecimal calculaDesconto(Orcamento orcamento){
+        return orcamento.getValor().multiply(new BigDecimal("0.05"));
+    }
+
+    @Override
+    public boolean verificaDesconto(Orcamento orcamento) {
+        return orcamento.getValor().compareTo(new BigDecimal("500")) > 0;
     }
 }

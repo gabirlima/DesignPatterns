@@ -11,6 +11,15 @@ public abstract class Desconto {
     public Desconto(Desconto proximo) {
         this.proximo = proximo;
     }
+//pattern Template Method - https://refactoring.guru/design-patterns/template-method
+    public BigDecimal calcula(Orcamento orcamento){
+        if(verificaDesconto(orcamento)){
+            return calculaDesconto(orcamento);
+        }
 
-    public abstract BigDecimal calcula(Orcamento orcamento);
+        return proximo.calcula(orcamento);
+    }
+    public abstract BigDecimal calculaDesconto(Orcamento orcamento);
+    public abstract boolean verificaDesconto(Orcamento orcamento);
+
 }
